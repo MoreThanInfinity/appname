@@ -1,0 +1,11 @@
+<% if user.followed_by?(current_user) %>
+	<%= form_tag follows_destroy_path, method: :post do  %>
+		<%= hidden_field_tag :user_id, user.id %>
+		<%= submit_tag "have #{user.followers_count} followers, unfollow!" %>
+	<% end %>
+<% else %>
+	<%= form_tag follows_create_path, method: :post do %>
+		<%= hidden_field_tag :user_id, user.id %>
+		<%= submit_tag "have #{user.followers_count} followers, follow him!" %>
+	<% end %>
+<% end %> 

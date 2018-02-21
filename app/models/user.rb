@@ -1,3 +1,40 @@
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  acts_as_voter
+  acts_as_followable
+  acts_as_follower
+
+  devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :comments
+  has_many :posts
+
+  has_many :messages
+  has_many :subscriptions
+  has_many :chats, through: :subscriptions
+  has_many :comchats, through: :subscriptions
+
+
+  mount_uploader :avatar, AvatarUploader
+  self.per_page=5
+
+  delegate :com_chats, :pers_chats, to: :chats
+  def self.current
+    Thread.current[:user]
+  end
+
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
+
+  def informable?
+    self == User.current || self.followed_by?(User.current)
+  end
+
+end
+
 # == Schema Information
 #
 # Table name: users
@@ -29,10 +66,3 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-end

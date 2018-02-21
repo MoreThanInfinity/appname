@@ -1,0 +1,29 @@
+<div class='row text-center'>
+  <div class='col-lg-6 col-lg-offset-3'><h1>
+    <% if (@chat.type == "PersChat") %>
+      <%= @chat.other_user.name %>
+    <% elsif (@chat.type == "ComChat") %>
+      <%= @chat.name %>
+    <% end %></h1>
+    <div class='row text-center'><%= render partial: 'messages/message_form', locals: {message: @message, chat: @chat}%></div>
+  
+    <% if @chat.messages.any? %>
+      <% @chat.messages.each do |message| %>
+        <div  id='messages'>
+          <%= render 'messages/message', message: message %>
+        </div>
+      <% end %>
+    <%else%>
+      <div id="messages"></div>
+    <% end %>
+  </div>
+</div>
+
+
+<script>
+  createMessageChannel();
+  // app/assets/javascripts/channels/messages.coffee 
+  messageForm();
+  // app/assets/javascripts/messages_form.js
+
+</script>

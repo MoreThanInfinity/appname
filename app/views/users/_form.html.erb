@@ -1,0 +1,22 @@
+<div style='padding-top:40px;'></div>
+<%= simple_form_for @user, class: 'form-group ', id: 'user-form', remote: :true do |f| %>
+	<%= f.input :name , label: false, placeholder: "Enter your name", class: 'form-control input-lg', row: '3' %>
+	<%= f.input :about , label: false, class: 'form-control input-lg', row: '3' %>
+<div class='row'>
+	<div class='col-lg-8 col-lg-offset-2 text-center'>	
+		<label class="btn btn-primary btn-block" for="my-file-selector">
+		    <%= f.file_field :avatar, id: "my-file-selector", style: 'display: none;'  %>
+		    <h4>Load New Avatar</h4>
+		</label>
+	</div>
+</div>	
+<div class='row'>
+	<div class='col-lg-4 col-lg-offset-2 text-center'>
+		<%= f.button :submit, "Confirm", class: 'btn btn-lg btn-success btn-block' %>
+	</div>
+	<div class='col-lg-4 text-center'>
+		<%= link_to 'Cancel', :back, class: 'btn btn-block btn-warning ',style: 'font-size:150%;', confirm: 'Are you sure?' %>
+	</div>
+</div>
+<% end %>
+

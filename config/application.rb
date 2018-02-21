@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Appname
+module Kontik
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
@@ -16,3 +16,4 @@ module Appname
     # -- all .rb files in that directory are automatically loaded.
   end
 end
+#config.autoload_paths += %W(#{config.root}/app/models/chats)

@@ -1,0 +1,53 @@
+<div class='row text-center'><h1>Friends activity</h1></div>
+
+
+<% unless @activities.empty? %>
+	<% @activities.each do |activity| %>
+
+		
+		<% if activity.trackable %>
+
+			<div class='row'>
+				<div class='col-lg-2 col-lg-offset-2'>
+					<%= (link_to (image_tag (activity.owner.avatar), size: '70x70', class: 'img-responsive center-block img-circle'), activity.owner) if activity.owner %>
+					
+				</div>
+				<div class='col-lg-8'>
+					<% case activity.key %>
+						<% when 'comment.create' %>
+						<i class='fa fa-lg fa-comment-o'></i>
+						<% when 'follow.create' %>
+						<i class='fa fa-lg fa-plus-circle'></i>
+						<% when 'post.create' %>
+						<i class='fa fa-lg fa-pencil-square-o'></i>
+						<% when 'post.like' %>
+						<i class='fa fa-lg fa-heart-o'></i>
+						<% when 'com_chat.create' %>
+						<i class='fa fa-lg fa-comments-o'></i>
+					<% end %>
+
+					<%= link_to activity.owner.name, user_path(activity.owner) if activity.owner %>
+			
+
+					<% case activity.key %>
+						<% when 'comment.create' %>
+						<%= render 'public_activity/comment/create', activity: activity  %>
+						<% when 'follow.create' %>
+						<%= render 'public_activity/follow/create', activity: activity %>
+						<% when 'post.create' %>
+						<%= render 'public_activity/post/create', activity: activity %>
+						<% when 'post.like' %>
+						<%= render 'public_activity/post/like', activity: activity %>
+						<% when 'com_chat.create' %>
+						<%= render 'public_activity/chat/create', activity: activity %>
+					<% end %>
+				</div>
+		<% end %>
+		
+		</div>
+
+	<% end %>
+ <div class='row text-center'>
+  <%= will_paginate(@activities, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
+<% end %>

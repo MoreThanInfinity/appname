@@ -1,0 +1,41 @@
+<div class='row text-center ' style='padding-bottom:0px;'><h1>People</h1><hr/>
+
+  <% @users.each do |user| %>
+    <div class='row text-center' style='padding-top:30px;'>
+      <div class='col-lg-5 col-lg-offset-1 text-center' >
+        <%= link_to (image_tag (user.avatar), size: '200x200', class: 'img-responsive img-rounded center-block') %>
+
+        <h4><%= link_to user.name, user_path(user) %></h4>
+      </div>
+
+      <div class='col-lg-1'>
+        
+        
+        <%= link_to chats_path( other_user: user.id), method: :post do %>
+          <i class='fa fa-envelope fa-lg' ></i>
+        <% end %><hr/>
+          
+          
+        <%= link_to follow_user_path(user), id: 'user-#{ user.id}-follow', method: :put, remote: :true  do %>
+          <i class='fa fa-user-plus fa-lg' ></i>
+        <% end %>
+
+        <div style='color:#008080; font-size:120%;' id='user-<%= user.id %>-followsize'><%= user.followers_count %>
+        </div>
+          
+      </div>
+      
+
+      <div class='col-lg-5 '>
+        <h4 class='text-center'>User information</h4>
+        <%= user.about %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<div class='row text-center'>
+  <%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
+

@@ -1,0 +1,44 @@
+<div class='row text-center'>
+
+<%= simple_form_for @post, id: 'new_post', class: 'form-group form-inline', remote: true do |f| %>
+  <%= f.error_notification %>
+  <div class='row'>
+    <div class='col-lg-12'>
+      <div >
+        <%= f.input   :content, label: false, id: 'post-text', class: 'form-control', placeholder: 'Your post!' %>
+          <label class="btn btn-primary btn-block" for="my-file-selector">
+            <%= f.file_field :attachments, id: "my-file-selector", style: 'display: none;'  %>
+            <p>Load Image<p>
+          </label>
+
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-lg-6'>
+    <%= f.button :submit, 'Create', class: 'btn btn-block btn-success' %>
+    </div>
+
+    <div class='col-lg-6'>
+      <%= link_to 'Cancel', '#', id: 'cancel-link', class: 'btn btn-block btn-warning' , remote: true %>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('a#cancel-link').click(function() {
+  	if ($('input[name=content]').val() == '') {
+	      	$('#new_post').remove();
+			$('#new_link').show();
+    } else {
+		if (confirm('Are you sure?')) {
+	      	$('#new_post').remove();
+			$('#new_link').show();
+		}
+    }
+
+  });
+});
+</script>

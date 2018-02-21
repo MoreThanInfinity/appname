@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221100802) do
+ActiveRecord::Schema.define(version: 20180221125253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20180221100802) do
     t.string "identifier"
     t.string "name"
     t.string "type"
+    t.datetime "created_at", default: "2018-02-21 13:04:47", null: false
+    t.datetime "updated_at", default: "2018-02-21 13:04:47", null: false
   end
 
   create_table "comments", id: :serial, force: :cascade do |t|
@@ -67,6 +69,8 @@ ActiveRecord::Schema.define(version: 20180221100802) do
     t.text "content"
     t.bigint "user_id"
     t.bigint "chat_id"
+    t.datetime "created_at", default: "2018-02-21 13:04:47", null: false
+    t.datetime "updated_at", default: "2018-02-21 13:04:47", null: false
     t.index ["chat_id"], name: "index_messages_on_chat_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
@@ -76,6 +80,8 @@ ActiveRecord::Schema.define(version: 20180221100802) do
     t.string "attachments"
     t.string "post_pict"
     t.bigint "user_id"
+    t.datetime "created_at", default: "2018-02-21 13:04:48", null: false
+    t.datetime "updated_at", default: "2018-02-21 13:04:48", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

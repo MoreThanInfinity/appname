@@ -1,0 +1,6 @@
+<div class='form-group' style='padding-bottom:40px'>
+<%= form_for message, remote: true do |f| %>
+  <%= f.text_area :content, data: {textarea: "message"}, class: 'form-control', rows: '3', placeholder: "Enter to send" %>
+<%= f.hidden_field :chat_id, value: chat.id %>
+<% end %>
+</div>

@@ -1,0 +1,7 @@
+<%= 'added a comment ' %> 
+<strong>
+<%= separate(activity.trackable.comment) %>
+</strong>
+<%= ' to post ' %>
+<%= link_to separate(Post.find(activity.trackable.commentable_id).content), post_path(Post.find(activity.trackable.commentable_id)) %>
+

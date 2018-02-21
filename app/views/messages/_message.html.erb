@@ -1,0 +1,16 @@
+<div class=' row '>
+
+    <div class='row'>
+      <div class='col-lg-8 text-left'> 
+      	<big><%= message.user.name %></big>
+      </div>
+      <div class='col-lg-4 creating'>
+      	<small><%= creating(message) %></small>  
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-lg-3'><%= image_tag message.user.avatar, size: "60x60", class: 'img-responsive center-block img-rounded' %></div>
+      <div class='col-lg-9 text-left'><%= message.content %></div>
+    </div>
+</div>
+<hr/>

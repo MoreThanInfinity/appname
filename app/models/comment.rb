@@ -1,3 +1,15 @@
+class Comment < ActiveRecord::Base
+
+  include ActsAsCommentable::Comment
+  include PublicActivity::Model
+  acts_as_votable
+  belongs_to :commentable, :polymorphic => true
+  belongs_to :user
+  default_scope -> { order('created_at DESC') }
+  self.per_page = 5
+  tracked only: [:create], owner: proc{|_controller, model| model.user}
+end
+
 # == Schema Information
 #
 # Table name: comments
@@ -18,19 +30,3 @@
 #  index_comments_on_commentable_type  (commentable_type)
 #  index_comments_on_user_id           (user_id)
 #
-
-class Comment < ActiveRecord::Base
-
-  include ActsAsCommentable::Comment
-
-  belongs_to :commentable, :polymorphic => true
-
-  default_scope -> { order('created_at ASC') }
-
-  # NOTE: install the acts_as_votable plugin if you
-  # want user to vote on the quality of comments.
-  #acts_as_voteable
-
-  # NOTE: Comments belong to a user
-  belongs_to :user
-end

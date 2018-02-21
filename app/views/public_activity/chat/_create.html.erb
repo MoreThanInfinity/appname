@@ -1,0 +1,5 @@
+<%= 'create a chat ' %> 
+<strong>
+<%= link_to "#{activity.trackable.name}", chat_path(Chat.find(activity.trackable_id)) %>
+</strong>
+

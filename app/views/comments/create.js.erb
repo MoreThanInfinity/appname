@@ -1,0 +1,2 @@
+$('#comments-form')[0].reset();
+$('.comments-<%= @post.id %>').prepend("<%= j (render @comment) %>");

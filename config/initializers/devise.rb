@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -8,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '7cbbdf3a246d64beda30c7150562f5f6eae5d3748ca7561b037a6fef070e4be6d6075cf8298eca19a87034ed5572712c46009b73d98def0d46acf636215850b4'
+  # config.secret_key = '7d5e586b42bda0646bff9444c67b114d5f8f350858e4da417c870b0a22952c5f83acf50f081ac2664a25a0695fa3cdbe7ce27070e6fae78c3391cbd7789943d9'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -110,7 +108,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '0553f5715fa13afba3ce1a7c4ec39e33597e763ff0e6aa6e1c99472f2a4dd3ebafc72ddc4613687f590fedfb40428b089119152f136adbf014419400d3453153'
+  # config.pepper = 'e3c86e03d7cdd8f2b8e17fc536ccb613b640ae3470b354ff4758421e858ab04cb2dd3874d8a488cacf477bec2c33d307ace61428f00463aa0ede313ad11a0231'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -277,3 +275,15 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 end
+
+  Warden::Manager.after_set_user do |user,auth,opts|
+    scope = opts[:scope]
+    auth.cookies.signed["#{scope}.id"] = user.id
+    auth.cookies.signed["#{scope}.expires_at"] = 30.minutes.from_now
+  end
+
+  Warden::Manager.before_logout do |user, auth, opts|
+    scope = opts[:scope]
+    auth.cookies.signed["#{scope}.id"] = nil
+    auth.cookies.signed["#{scope}.expires_at"] = nil
+  end

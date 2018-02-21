@@ -1,0 +1,51 @@
+
+<% if (chat.type == "PersChat") && current_user.pers_chats.include?(chat) %>
+	<div class='row text-center' style='padding-top:50px;'>
+		<div class='col-lg-2 col-lg-offset-3 ' >
+			<%= link_to (image_tag (chat.other_user.avatar), size: '170x170', class: 'img-responsive img-rounded'), user_path(chat.other_user) %>
+		</div>
+		<div class='col-lg-4' id='messblock' data-link='<%= chat_path(chat, other_user: chat.other_user.id) %>' style='cursor:pointer'>
+			<div class='row'>
+				<div class='col-lg-8 text-left naming' ><%= chat.other_user.name %></div>
+				<div class='col-lg-4 text-right creating' ><%= creating(chat.messages.last)%></div>
+			</div><hr/>
+
+			<div class='row'>
+				<div class='col-lg-4' id='blockinside'><%= link_to (image_tag (chat.messages.last.user.avatar), size: '100x100', class: 'img-responsive img-circle'), user_path(chat.messages.last.user) %>
+				</div>
+				<div class='col-lg-8'><%= separate(chat.messages.last.content) %></div>
+
+			</div>
+		</div>
+	</div>
+<% elsif (chat.type == "ComChat") %>
+	<div class="panel panel-default" style='cursor:pointer' id='messblock' data-link='<%= chat_path(chat)%>' >
+		<div class='row text-center ' style='padding-top:20px;'>
+			<div class='col-lg-4 col-lg-offset-3 text-left' style='font-size:150%'><%= chat.name%></div><hr/>
+			<div class='col-lg-2 text-right creating' ><%= creating(chat) %></div>
+		</div>
+
+		<% if !chat.messages.empty? %>
+			<% last_messages(chat).each do |message| %>
+			<div class='row' >
+				<div class='col-lg-1 col-lg-offset-3' id='blockinside'>
+					<%= link_to (image_tag (message.user.avatar), size: '40x40', class: 'img-responsive img-rounded center-block'), user_path(message.user) %>
+				</div>
+				<div class='col-lg-6 text-left' id='blockinside'><strong><%= link_to message.user.name, user_path(message.user) %>: </strong><%= message.content%>
+				</div>
+				<div class='col-lg-2 text-right creating' ><%= creating(message)%></div>
+			</div>
+			<% end %>
+		<% end %>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+$("div#messblock").click(function() {
+  window.location = $(this).data("link")
+});
+
+$("div#blockinside").click(function (event) {
+    event.stopPropagation();
+});
+</script>

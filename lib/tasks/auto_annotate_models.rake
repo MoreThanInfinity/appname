@@ -9,7 +9,7 @@ if Rails.env.development?
     Annotate.set_defaults(
       'routes'                    => 'false',
       'position_in_routes'        => 'before',
-      'position_in_class'         => 'before',
+      'position_in_class'         => 'bottom',
       'position_in_test'          => 'before',
       'position_in_fixture'       => 'before',
       'position_in_factory'       => 'before',
