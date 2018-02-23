@@ -1,6 +1,6 @@
-<div class='row text-center'>
+<div class='row text-center' id='new_post'>
 
-<%= simple_form_for @post, id: 'new_post', class: 'form-group form-inline', remote: true do |f| %>
+<%= simple_form_for @post, html: {multipart: true}, class: 'form-group form-inline', remote: true do |f| %>
   <%= f.error_notification %>
   <div class='row'>
     <div class='col-lg-12'>
@@ -27,16 +27,17 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function() {
+  $(document).ready(function() {
   $('a#cancel-link').click(function() {
-  	if ($('input[name=content]').val() == '') {
-	      	$('#new_post').remove();
-			$('#new_link').show();
+    if ($('input[name=content]').val() == '') {
+      $('#new_post').remove();
+      $('#new_link').show();
     } else {
-		if (confirm('Are you sure?')) {
-	      	$('#new_post').remove();
-			$('#new_link').show();
-		}
+    if (confirm('Are you sure?')) {
+      $('#new_post').remove();
+      $('#new_link').show();
+      $('#post-<%= @post.id %>').show()
+    }
     }
 
   });

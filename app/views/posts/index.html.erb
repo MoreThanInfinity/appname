@@ -1,4 +1,3 @@
-
 <div class='row text-center'>
 	<h1>Posts</h1>
 </div>
@@ -9,12 +8,9 @@
 	</div>
 </div>
 
-
-
-
-  <div class='posts'>
-    <%= render @posts %>
-  </div >
+<div class='posts'>
+	<%= render @posts %>
+</div >
 
 <div class='row text-center'>
   <%= will_paginate(@posts, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>

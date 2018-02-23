@@ -22,3 +22,19 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+<script type="text/javascript">
+$(document).ready(function() {
+  $('a#cancel-link').click(function() {
+  	if ($('input[name=content]').val() == '') {
+	      	$('#new_post').remove();
+			$('#new_link').show();
+    } else {
+		if (confirm('Are you sure?')) {
+	      	$('#new_post').remove();
+			$('#new_link').show();
+		}
+    }
+
+  });
+});
+</script>
