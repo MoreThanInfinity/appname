@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
   self.per_page=5
 
-  mount_uploader :attachments, PostPictUploader
+  mount_uploader :attachments, AttachmentsUploader
   tracked only: [:create, :like], owner: proc{|_controller, model| model.user}
 
 end
