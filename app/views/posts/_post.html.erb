@@ -15,7 +15,10 @@
         
         </div>
 
-        <div class='col-lg-4 horizontal-align' style='margin-bottom:auto; margin-top:auto;' ><%= link_to "#{post.content}", post, class: 'black-link' %><hr/><%= link_to (image_tag (post.attachments), class: 'img-responsive center-block', size: '200x200'), post %><hr/>
+        <div class='col-lg-4 horizontal-align' style='margin-bottom:auto; margin-top:auto;' ><%= link_to "#{post.content}", post, class: 'black-link' %>
+            <hr/>
+            <%= image_tag (post.attachments), class: 'img-responsive center-block', size: '200x200' %>
+            <hr/>
             <div class='row'>
                 <div class='col-lg-4'>
                     <% if (post.user == current_user) %>
