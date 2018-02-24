@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   get 'home/event'
   get 'home/index'
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
   mount ActionCable.server => '/cable'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
