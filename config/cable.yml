@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://redistogo:30284ea8fd5e035a4742e402e4901659@soldierfish.redistogo.com:11467/
   channel_prefix: kontik_production
