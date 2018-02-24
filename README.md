@@ -48,3 +48,7 @@ $(document).ready(function() {
 	height: 100%;
 	width: 101%;
 }
+
+development:
+  adapter: redis
+  url: redis://localhost:6379/1
