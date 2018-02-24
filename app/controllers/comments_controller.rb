@@ -40,11 +40,6 @@ class CommentsController < ApplicationController
     elsif current_user.voted_up_on? @comment
       @comment.disliked_by current_user
     end
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'success!' }
-      format.json { head :no_content }
-      format.js
-    end
   end
 
   private

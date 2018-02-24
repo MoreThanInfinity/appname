@@ -28,14 +28,14 @@
                     <% end %>
                 </div>
                 <div class='col-lg-4'>
-                    <% if post.liked_by current_user %>
+                    <% if !current_user.voted_up_on? post %>
                         <%= link_to like_post_path(post), id: "post-#{post.id}-like", method: :put, remote: true do %>
-                            <i class='fa fa-thumbs-up fa-lg' ></i>
+                                <i class='fa fa-thumbs-up fa-lg' ></i>
                             <% end %>
-                    <% elsif !post.liked_by current_user %>
+                    <% elsif current_user.voted_up_on? post %>
                         <%= link_to like_post_path(post), id: "post-#{post.id}-like", method: :put, remote: true do %>
-                            <i class='fa fa-thumbs-up fa-lg ' ></i>
-                            <% end -%>
+                                <i class='fa fa-thumbs-up fa-lg fa-rotate-180' ></i>
+                            <% end %>
                     <% end %>
                     <p id="post-<%= post.id %>-likesize" class="likesize"><%= post.get_likes.size %></p>
                 </div>

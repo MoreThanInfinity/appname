@@ -8,9 +8,15 @@
         <div class='row'>
         <hr/>
             <div class='col-lg-6 text-center'>
-                <%= link_to like_comment_path(comment), id: "comment-#{comment.id}-like", method: :put, remote: true do %>
-                    <i class='fa fa-thumbs-up ' ></i>
-                <% end %>
+                <% if !current_user.voted_up_on? comment %>
+                        <%= link_to like_comment_path(comment), id: "comment-#{comment.id}-like", method: :put, remote: true do %>
+                                <i class='fa fa-thumbs-up fa-lg' ></i>
+                            <% end %>
+                    <% elsif current_user.voted_up_on? comment %>
+                        <%= link_to like_comment_path(comment), id: "comment-#{comment.id}-like", method: :put, remote: true do %>
+                                <i class='fa fa-thumbs-up fa-lg fa-rotate-180' ></i>
+                            <% end %>
+                    <% end %>
                 <p id="comment-<%= comment.id %>-likesize" class="likesize"><%= comment.get_likes.size %></p>
             </div>
             <div class='col-lg-6 text-center'>

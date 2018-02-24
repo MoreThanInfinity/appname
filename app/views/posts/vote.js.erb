@@ -1,1 +1,2 @@
 $("#post-<%= @post.id %>-likesize").html("<%= @post.get_likes.size %>")
+$("#post-<%= @post.id %>-like").children().toggleClass('fa-rotate-180')

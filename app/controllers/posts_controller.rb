@@ -41,11 +41,6 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-      format.js
-    end
   end
 
   def vote
@@ -56,11 +51,6 @@ class PostsController < ApplicationController
       @post.disliked_by current_user
       activity=PublicActivity::Activity.find_by_trackable_id_and_key(@post.id, "post.like")
       activity.destroy if activity.present?
-    end
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'success!' }
-      format.json { head :no_content }
-      format.js
     end
   end
 
