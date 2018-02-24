@@ -38,3 +38,13 @@ $(document).ready(function() {
   });
 });
 </script>
+
+.backgroundimg {
+	background-image: url(w-349443.jpg);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	
+	height: 100%;
+	width: 101%;
+}

@@ -24,6 +24,7 @@ module ApplicationHelper
   end
 
   def belonging?(item)
-    (item.class == Post && current_user.posts.include?(item)) || (item.class == Comment && current_user.posts.include?(Post.find(item.commentable_id)))
+    (item.class == Post && current_user.posts.include?(item)) ||
+      (item.class == Comment && current_user.posts.include?(Post.find(item.commentable_id)))
   end
 end

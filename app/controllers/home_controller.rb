@@ -10,7 +10,8 @@ class HomeController < ApplicationController
     @friends=@user.all_following
     @activities=[]
     PublicActivity::Activity.order('created_at DESC').all.each do | activity|
-      @activities<<activity if (activity.trackable && (activity.owner.informable? || belonging?(activity.trackable)))
+      @activities<<activity if (activity.trackable && (activity.owner.informable? ||
+        belonging?(activity.trackable)))
     end
     @activities=@activities.paginate(:page => params[:page], per_page: 10)
   end
@@ -20,3 +21,4 @@ class HomeController < ApplicationController
       @user=current_user
     end
 end
+

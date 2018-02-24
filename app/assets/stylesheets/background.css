@@ -1,14 +1,22 @@
-html {
+html, body{
+  height: 100%;
+}
+body { 
+	background-image: url(https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg) ;
+	background-position: center center;
+	background-repeat:  no-repeat;
+	background-attachment: fixed;
+	background-size:  cover;
+	background-color: #999;
+  
+}
+
+div, body{
 	margin: 0;
 	padding: 0;
 }
 
-.backgroundimg {
-	background-image: url(w-349443.jpg);
-	background-size: cover;
-	background-position: center center;
-	background-repeat: no-repeat;
-	
-	height: 100%;
-	width: 101%;
+.wrapper {
+	height: 100%; 
+	width: 100%; 
 }
