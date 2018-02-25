@@ -42,7 +42,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 
 
-  gem 'fog-aws'
+gem 'fog-aws'
 
 gem 'sidekiq'
 gem 'sinatra', git: 'https://github.com/sinatra/sinatra', :require => nil
