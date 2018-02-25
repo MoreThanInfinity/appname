@@ -7,13 +7,15 @@ end
 
 gem 'bootstrap-will_paginate'
 gem "font-awesome-rails"
-gem 'remotipart', '~> 1.2'
+
 gem 'will_paginate'
 gem 'public_activity'
 gem 'acts_as_votable'
 gem 'acts_as_commentable'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem "carrierwave"
+gem 'remotipart', '~> 1.2'
+gem 'fog-aws'
 gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'letter_opener'
@@ -42,7 +44,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 
 
-gem 'fog-aws'
+
 
 gem 'sidekiq'
 gem 'sinatra', git: 'https://github.com/sinatra/sinatra', :require => nil
