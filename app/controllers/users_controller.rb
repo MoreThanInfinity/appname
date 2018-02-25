@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :subscribe]
   respond_to :js, :html
 
@@ -15,9 +15,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to '/home/index'
+      redirect_to 'home/index'
     else
-      redirect_to '/home/index'
+      render :root, notice: "#{@user.errors.full_messages}"
     end
   end
 
