@@ -1,9 +1,9 @@
 class AttachmentsUploader < CarrierWave::Uploader::Base
 
-  if Rails.env.production? || Rails.env.test?
-    storage = :fog
+  if Rails.env.production?
+    storage :fog
   else
-    storage = :file
+    storage :file
   end
 
   # Use AWS storage if in production
