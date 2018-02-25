@@ -15,9 +15,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to 'home/index'
+      redirect_to '/home/index'
     else
-      render :root, notice: "#{@user.errors.full_messages}"
+      redirect_to '/home/index'
     end
   end
 
