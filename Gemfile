@@ -13,7 +13,7 @@ gem 'public_activity'
 gem 'acts_as_votable'
 gem 'acts_as_commentable'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
-gem 'carrierwave'
+gem "carrierwave"
 gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'letter_opener'
@@ -41,6 +41,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 
+
+  gem 'fog-aws'
 
 gem 'sidekiq'
 gem 'sinatra', git: 'https://github.com/sinatra/sinatra', :require => nil
@@ -71,6 +73,7 @@ end
 
 group :production do
   gem 'redis'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

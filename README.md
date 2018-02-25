@@ -22,33 +22,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-<script type="text/javascript">
-$(document).ready(function() {
-  $('a#cancel-link').click(function() {
-  	if ($('input[name=content]').val() == '') {
-	      	$('#new_post').remove();
-			$('#new_link').show();
-    } else {
-		if (confirm('Are you sure?')) {
-	      	$('#new_post').remove();
-			$('#new_link').show();
-		}
-    }
-
-  });
-});
-</script>
-
-.backgroundimg {
-	background-image: url(w-349443.jpg);
-	background-size: cover;
-	background-position: center center;
-	background-repeat: no-repeat;
-	
-	height: 100%;
-	width: 101%;
-}
-
-development:
-  adapter: redis
-  url: redis://localhost:6379/1
+AIzaSyDWVhtxpRuNeTMPrhWGeLhdx4-80gXkZFQ - google access key
