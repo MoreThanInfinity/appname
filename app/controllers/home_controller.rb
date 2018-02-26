@@ -4,9 +4,11 @@ class HomeController < ApplicationController
   include ApplicationHelper
 
   def index
+    @navigation="My Profile"
   end
 
   def event
+    @navigation="Events"
     @friends=@user.all_following
     @activities=[]
     PublicActivity::Activity.order('created_at DESC').all.each do | activity|

@@ -6,6 +6,9 @@ class ChatsController < ApplicationController
 
   def index
     @chats=chat_type_class.all
+    @navigation="Chats" if chat_type_class == ComChat
+    @navigation="Post" if chat_type_class == PersChat
+
   end
 
   def new

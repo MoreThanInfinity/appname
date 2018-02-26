@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   respond_to :js, :html
 
   def index
+    @navigation="People"
     @users=User.where('id != ?', current_user.id).page(params[:page]).order('created_at ASC')
   end
 

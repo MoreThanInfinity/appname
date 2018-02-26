@@ -18,3 +18,8 @@
 .primary-link {
 	color: #005686;
 }
+.navigation {
+	padding-right: 100px;
+	font-size: 130;
+	font-weight: 500;
+}

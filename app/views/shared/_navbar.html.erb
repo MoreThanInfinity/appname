@@ -10,7 +10,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   	      <% if user_signed_in? %>
-
+            <li class='nav-text navigation' style='font-size: 180%; font-weight: 900;'><%= @navigation if @navigation %></li>
   	        <li class='nav-text'>Loged in as: <div><strong><%= current_user.email %></strong></div></li>
             <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
   	        

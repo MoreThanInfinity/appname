@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :require_permission, only: [:edit, :update, :destroy]
 
   def index
+    @navigation= "Posts"
     @posts = Post.all.page(params[:page]).order('created_at ASC')
   end
 
