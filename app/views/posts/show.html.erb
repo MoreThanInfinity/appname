@@ -1,55 +1,61 @@
-<div class='row text-center'><h1>
-	<%= link_to (image_tag @post.user.avatar, size: '50x50', class: 'img-circle'), user_path(@post.user) %>
-	<%= link_to @post.user.name, user_path(@post.user) %>
-</h1></div><hr/>
+<<div id="post-<%= @post.id %>">
+<div class="well">
+    <div class='row' style=' margin-top:40px;'>
+        <div class='col-lg-2 '>
+            <%= link_to (image_tag (@post.user.avatar), size: '150x150', class: 'img-responsive img-rounded'), @post.user %>
+        </div>
+        <div class='col-lg-6 horizontal-align' style='margin-bottom:auto; margin-top:auto;' >
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4 ><%= link_to @post.user.name, @post.user %>  
+                    </h4>
+                </div> 
+                <div class="col-lg-2 text-center">
+                    (<span id="post-<%= @post.id %>-likesize" class="likesize"><%= @post.get_likes.size %></span> votes)
+                </div>                
+                <div class="col-lg-4 text-center creating"><%= creating(@post)%><br></div>
+            </div>            
+            <%= @post.content %>
+            <hr/>
+            <%= image_tag (@post.attachments), class: 'img-responsive center-block', size: '200x200' %>
+            <hr/>
+            <div class='text-center'>
+                <div class='btn-group btn-group-lg' role='group'>
+                    <% if (@post.user == current_user) %>
+                        <%= link_to edit_post_path(@post), id: "edit_link",type: 'button', class: 'btn btn-default', remote: true do %>
+                            <i class='fa fa-pencil fa-lg' ></i>
+                        <% end %>
+                    <% end %>                
+                    <% if !current_user.voted_up_on? @post %>
+                        <%= link_to like_post_path(@post), id: "post-#{@post.id}-like",type: 'button', class: 'btn btn-default', method: :put, remote: true do %>
+                                <i class='fa fa-thumbs-up fa-lg' ></i>
+                            <% end %>
+                    <% elsif current_user.voted_up_on? @post %>
+                        <%= link_to like_post_path(@post), id: "post-#{@post.id}-like",type: 'button', class: 'btn btn-default', method: :put, remote: true do %>
+                                <i class='fa fa-thumbs-up fa-lg fa-rotate-180' ></i>
+                            <% end %>
+                    <% end %> 
+                    <% if (@post.user == current_user) %>
+                        <%= link_to @post, method: :delete, remote: true, data: {confirm: 'Are you sure?'}, type: 'button', class: 'btn btn-default'  do %>
+                            <i class='fa fa-remove fa-lg' ></i>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class='col-lg-4 '>
+                <%= render 'comments/form', commentable: @post %><hr/>
+            <ul class='list-group comments-<%= @post.id %>'>
+                <% @post.comments.order('created_at DESC').each do |comment| %>
+                    <%= render "comments/comment", comment: comment %>
+                <% end %>
+            </ul> 
+        </div>
 
-<div class='row'>
-	<div class='col-lg-8 col-lg-offset-2 text-center' >
-		<div class='panel panel-default' ><%= @post.content %></div>
-	</div>
-
-
-
-	<div class='col-lg-5 col-lg-offset-1'>
-	<div class='row'>
-		<%= image_tag @post.attachments, class: 'img-responsive center-block img-rounded', size: '350x350' %><hr/>
-
-		<div class='row text-center'>
-
-		    <div class='col-lg-4'>
-		        <% if (@post.user == current_user) %>
-		            <%= link_to edit_post_path(@post), id: "edit_link", remote: true do %>
-		                <i class='fa fa-pencil fa-lg' ></i>
-		            <% end %>
-		        <% end %>
-		    </div>
-
-		    <div class='col-lg-4'>
-		        <%= link_to like_post_path(@post), id: "post-#{@post.id}-like", method: :put, remote: true do %>
-		            <i class='fa fa-thumbs-up fa-lg' ></i>
-		        <% end %>
-		        <p id="post-<%= @post.id %>-likesize" style='color:#008080; font-size:120%'><%= @post.get_likes.size %></p>
-		    </div>
-
-		    <div class='col-lg-4 '>
-		        <% if (@post.user == current_user) %>
-		            <%= link_to @post, method: :delete, remote: true, data: {confirm: 'Are you sure?'}, class: 'text-right' do %>
-		                <i class='fa fa-remove fa-lg' ></i>
-		            <% end %>
-		        <% end %>
-		    </div>
-		</div>
-	</div>
+    </div>
 </div>
-	<div class='col-lg-5 text-center' style='margin-bottom:auto; margin-top:auto;'>
-	    <%= render 'comments/form', commentable: @post %><hr/>
-	    <ul class='comments-<%= @post.id %>'>
-	        <% @post.comments.each do |comment| %>
-	            <li><%= render "comments/comment", comment: comment %></li>
-	        <% end %>
-	    </ul> 
-	</div>
 </div>
+
 
 <div class='row text-center'>
   <%= will_paginate(@comments, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>

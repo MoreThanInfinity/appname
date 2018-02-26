@@ -3,12 +3,12 @@
 <div class="well">
     <div class='row' style=' margin-top:40px;'>
         <div class='col-lg-2 '>
-            <%= image_tag (post.user.avatar), size: '150x150', class: 'img-responsive img-rounded' %>
+            <%= link_to (image_tag (post.user.avatar), size: '150x150', class: 'img-responsive img-rounded'), post.user %>
         </div>
         <div class='col-lg-6 horizontal-align' style='margin-bottom:auto; margin-top:auto;' >
             <div class="row">
                 <div class="col-lg-6">
-                    <h4><%= post.user.name %>  
+                    <h4 ><%= link_to post.user.name, post.user %>  
                     </h4>
                 </div> 
                 <div class="col-lg-2 text-center">
@@ -47,7 +47,7 @@
         <div class='col-lg-4 '>
                 <%= render 'comments/form', commentable: post %><hr/>
             <ul class='list-group comments-<%= post.id %>'>
-                <% post.comments.order('created_at DESC').each do |comment| %>
+                <% post.comments.order('created_at DESC').last(5).each do |comment| %>
                     <%= render "comments/comment", comment: comment %>
                 <% end %>
             </ul> 

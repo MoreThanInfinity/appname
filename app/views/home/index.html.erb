@@ -14,8 +14,8 @@
 				<div class='col-lg-6  text-center'>
 					<h3><strong >Some information about user</strong><hr/></h3>
 					<h5 id='user-info'><%= current_user.about %></h5>
-					<div class='row'>
-						<div class='col-md-8 col-md-offset-2 text-center' id='user-edit-btn'><%= link_to 'Change information or avatar', edit_user_path(@user), class: 'btn btn-lg btn-success btn-block', id: 'edit_link', remote: true %></div>
+					<div class='row btn-margin'>
+						<div class='col-md-8 col-md-offset-2 text-center' id='user-edit-btn'><%= link_to 'Change information or avatar', edit_user_path(@user), class: 'btn btn-lg btn-primary btn-block', id: 'edit_link', remote: true %></div>
 					</div>
 				</div>
 			</div>

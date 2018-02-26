@@ -2,5 +2,5 @@
 	<%= f.error_notification %>
   	<%= f.input :name, label: "Chat name", placeholder: "Enter chat name" %>
 	<%= f.hidden_field :identifier, value: SecureRandom.hex %>
-	<%= f.submit %>
+	<%= f.button :submit, class: 'btn btn-block btn-primary' %>
 <% end %>

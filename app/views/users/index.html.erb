@@ -1,38 +1,33 @@
-<div class='row text-center ' style='padding-bottom:0px;'><h1>People</h1><hr/>
-<% if @users %>
-  <% @users.each do |user| %>
-    <div class='row text-center' style='padding-top:30px;'>
-      <div class='col-lg-5 col-lg-offset-1 text-center' >
-        <%= link_to (image_tag (user.avatar), size: '200x200', class: 'img-responsive img-rounded center-block') %>
+<div class='row '><h1 class='text-center'>People</h1><hr/>
 
-        <h4><%= link_to user.name, user_path(user) %></h4>
-      </div>
+  <% if @users %>
+    <% @users.each do |user| %>
+      <div class='row'>
+        <div class='col-lg-5 text-center' >
+          <h4><%= link_to user.name, user_path(user) %></h4>
+          <%= link_to (image_tag (user.avatar), size: '200x200', class: 'img-responsive img-rounded center-block'), user %>
 
-      <div class='col-lg-1'>
-        
-        
-        <%= link_to chats_path( other_user: user.id), method: :post do %>
+          <div class=text-center>  
+          <div class='btn-group btn-group-lg' role='group'>
+          <%= link_to chats_path( other_user: user.id),type: 'button', class: 'btn btn-default', method: :post do %>
           <i class='fa fa-envelope fa-lg' ></i>
-        <% end %><hr/>
-          
-          
-        <%= link_to follow_user_path(user), id: 'user-#{ user.id}-follow', method: :put, remote: :true  do %>
+          <% end %>
+          <%= link_to follow_user_path(user), id: 'user-#{ user.id}-follow',type: 'button', class: 'btn btn-default', method: :put, remote: :true  do %>
           <i class='fa fa-user-plus fa-lg' ></i>
-        <% end %>
-
-        <div style='color:#008080; font-size:120%;' id='user-<%= user.id %>-followsize'><%= user.followers_count %>
+          <% end %>
+          </div>
+          </div>
         </div>
-          
-      </div>
-      
 
-      <div class='col-lg-5 '>
-        <h4 class='text-center'>User information</h4>
-        <%= user.about %>
-      </div>
-    </div>
-  <% end %>
-<% end -%>
+
+        <div class='col-lg-7 well'>
+          <h3>User information (<span id='user-<%= user.id %>-followsize'><%= user.followers_count %></span> followers)</h3>
+          <%= user.about %>
+        </div>
+      </div><hr/>
+    <% end %>
+  <% end -%>
+
 </div>
 
 
