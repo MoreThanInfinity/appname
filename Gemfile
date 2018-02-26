@@ -16,6 +16,7 @@ gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem "carrierwave"
 gem 'remotipart', '~> 1.2'
 gem 'fog-aws'
+gem 'mini_magick'
 gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'letter_opener'

@@ -1,11 +1,11 @@
 <div class='row text-center'><h1>Chats</h1></div>
-
+<% if @chats %>
 <div class='row' id='chats'>
-  <% @chats.each do |chat| %>
-    
-      <%= render "chat", chat: chat %>
-    
-  <% end %>
+	
+    <% @chats.each do |chat| %>	    
+      <%= render "chat", chat: chat %>	    
+    <% end %>
+	
 </div>
 
 
@@ -16,3 +16,4 @@
     <% end %>
   </div>
 </div>
+<% end %>
