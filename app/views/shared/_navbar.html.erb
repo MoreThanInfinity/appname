@@ -28,11 +28,26 @@
 <% if current_user %>
 <div class="navbar navbar-default navbar-fixed-left">
   <ul class="nav navbar-nav">
-    <li><%= link_to 'Events', home_event_path %></li> 
-    <li><%= link_to 'Posts', posts_path %></li>
-    <li><%= link_to 'Comunity', users_path %></li>
-    <li><%= link_to 'Correspondence', sti_chat_path("PersChat") %></li>
-    <li><%= link_to 'Common chats', sti_chat_path("ComChat") %></li>
+    <li><%= link_to home_event_path do %>
+      <i class='fa fa-calendar fa-lg'> <span>Events</span></i>
+    <% end %>
+    </li> 
+    <li><%= link_to posts_path do %>
+      <i class='fa fa-edit fa-lg'> <span>Posts</span></i>
+    <% end %>
+    </li> 
+    <li><%= link_to users_path do %>
+      <i class='fa fa-users fa-lg'> <span>People</span></i>
+    <% end %>
+    </li> 
+    <li><%= link_to sti_chat_path("PersChat") do %>
+      <i class='fa fa-envelope fa-lg'> <span>Post</span></i>
+    <% end %>
+    </li> 
+    <li><%= link_to sti_chat_path("ComChat") do %>
+      <i class='fa fa-comments fa-lg'> <span>Chats</span></i>
+    <% end %>
+    </li> 
   </ul>
 </div>
 <% end %>
