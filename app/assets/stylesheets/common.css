@@ -6,9 +6,12 @@
 	font-size: 130%;
 }
 .likesize {
-	color: #008080;
+	font-size: 120%;
+	font-weight: 500;
 }
-
+.btn-margin{
+	margin-top: 15px;
+}
 .black-link {
 	color: #000000;
 }

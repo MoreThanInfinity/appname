@@ -1,35 +1,32 @@
-<div class='row' id="comment-<%= comment.id%>" >
-    <div class='col-lg-2' style='padding-top:10px'><%= image_tag (comment.user.avatar), size: '50x50', class: 'img-circle' %>
+<li class='list-group-item'>
+    <div class='row' id="comment-<%= comment.id%>" >
+        <div class='col-lg-2' ><%= image_tag (comment.user.avatar), size: '50x50', class: 'img-circle' %>
+        </div>
+        <div class='col-lg-6'><strong><%= comment.user.name %><br>(<span id="comment-<%= comment.id %>-likesize" class="likesize"><%= comment.get_likes.size %></span> votes)</strong><br>
+        </div>
+        <div class='col-lg-4 creating'><%= creating(comment) %></div>
     </div>
-    <div class='col-lg-6'><strong><%= comment.user.name %></strong></div>
-    <div class='col-lg-4 creating'><%= creating(comment) %></div>
-
-    <div class='col-lg-12' style='padding-top:10px'><%= comment.comment %>
-        <div class='row'>
-        <hr/>
-            <div class='col-lg-6 text-center'>
-                <% if !current_user.voted_up_on? comment %>
-                        <%= link_to like_comment_path(comment), id: "comment-#{comment.id}-like", method: :put, remote: true do %>
-                                <i class='fa fa-thumbs-up fa-lg' ></i>
-                            <% end %>
-                    <% elsif current_user.voted_up_on? comment %>
-                        <%= link_to like_comment_path(comment), id: "comment-#{comment.id}-like", method: :put, remote: true do %>
-                                <i class='fa fa-thumbs-up fa-lg fa-rotate-180' ></i>
-                            <% end %>
+    <div class='row' style='padding-left: 10px;'><%= comment.comment %></div>
+    <div class="row text-center">
+        <div class="btn-group" role='group'>
+            <% if !current_user.voted_up_on? comment %>
+                <%= link_to like_comment_path(comment),type: 'button', class: 'btn btn-default', id: "comment-#{comment.id}-like", method: :put, remote: true do %>
+                        <i class='fa fa-thumbs-up fa-lg' ></i>
                     <% end %>
-                <p id="comment-<%= comment.id %>-likesize" class="likesize"><%= comment.get_likes.size %></p>
-            </div>
-            <div class='col-lg-6 text-center'>
-                <% if (comment.user == current_user) %>
-                    <%= link_to comment, method: :delete, data: {confirm: 'Are you sure?' }, remote: true do %>
+            <% elsif current_user.voted_up_on? comment %>
+                <%= link_to like_comment_path(comment),type: 'button', class: 'btn btn-default', id: "comment-#{comment.id}-like", method: :put, remote: true do %>
+                        <i class='fa fa-thumbs-up fa-lg fa-rotate-180' ></i>
+                    <% end %>
+            <% end %>
+            <% if (comment.user == current_user) %>
+                <%= link_to comment, method: :delete, data: {confirm: 'Are you sure?' },type: 'button', class: 'btn btn-default', remote: true do %>
                         <i class='fa fa-remove fa-lg' ></i>
                     <% end %>
-                <% end %>
-            </div>
+            <% end %>
         </div>
     </div>
-</div>
 
+</li>
 <script>
 function myFunction(x) {
     x.classList.toggle("fa-thumbs-down");
