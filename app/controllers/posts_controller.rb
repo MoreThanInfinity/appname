@@ -7,11 +7,11 @@ class PostsController < ApplicationController
     @navigation= "Posts"
     @searcheable="Post"
     if params[:search]
-      posts=Post.search(params[:search]).order('created_at DESC')
+      posts=Post.search(params[:search])
     else
-      posts = Post.all.order('created_at DESC')
+      posts = Post.all
     end
-    @posts=posts.page(params[:page]).order('created_at DESC')
+    @posts=posts.page(params[:page]).order('created_at ASC')
   end
 
   def show

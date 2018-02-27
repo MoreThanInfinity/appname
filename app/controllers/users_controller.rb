@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     @navigation="People"
     @searcheable="User"
     if params[:search]
-      users=User.where('id != ?', current_user.id).search(params[:search]).order('created_at ASC')
+      users=User.where('id != ?', current_user.id).search(params[:search])
     else
-      users = User.where('id != ?', current_user.id).all.order('created_at ASC')
+      users = User.where('id != ?', current_user.id)
     end
     @users=users.page(params[:page]).order('created_at ASC')
   end
