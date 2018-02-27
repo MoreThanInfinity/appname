@@ -2,6 +2,7 @@
 
   <% if @users %>
     <% @users.each do |user| %>
+    <div class="well">
       <div class='row'>
         <div class='col-lg-5 text-center' >
           <h4><%= link_to user.name, user_path(user) %></h4>
@@ -20,11 +21,12 @@
         </div>
 
 
-        <div class='col-lg-7 well'>
+        <div class='col-lg-6 well'>
           <h3>User information (<span id='user-<%= user.id %>-followsize'><%= user.followers_count %></span> followers)</h3>
           <%= user.about %>
         </div>
-      </div><hr/>
+      </div>
+    </div>
     <% end %>
   <% end -%>
 
