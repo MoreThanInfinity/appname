@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     else
       posts = Post.all
     end
-    @posts=posts.page(params[:page]).order('created_at ASC')
+    @posts=posts.page(params[:page]).order(id: :desc)
   end
 
   def show
