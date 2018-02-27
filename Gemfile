@@ -23,6 +23,7 @@ gem 'letter_opener'
 gem 'devise'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'jquery-rails'
+gem 'friendly_id'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 # Use postgresql as the database for Active Record

@@ -11,7 +11,7 @@
 				<div class='col-lg-4 text-right creating' ><%= creating(chat.messages.last)%></div>
 			</div><hr/>
 
-			<div class='row'>
+			<div class='row text-left'>
 			<% last_messages(chat).each do |mess|%>
 				<div class='col-lg-5' id='blockinside'><%= link_to mess.user.name, mess.user %> :
 				</div>

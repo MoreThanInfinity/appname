@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :subscribe]
   respond_to :js, :html
 
@@ -9,6 +9,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    if @user==current_user
+      @navigation='My proile'
+    elsif @user!=current_user
+      @navigation=@user.name
+    end
   end
 
   def edit
@@ -16,10 +21,11 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to '/home/index'
+      redirect_to profile_path
     else
-      redirect_to '/home/index'
+      redirect_to profile_path
     end
+    @user.update(slug: @user.name.parameterize)
   end
 
   def subscribe
@@ -40,14 +46,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile
+    redirect_to user_path(current_user)
+  end
+
   private
 
   def set_user
-    @user=User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def user_params
-    params.require(:user).permit( :name, :about, :avatar)
+    params.require(:user).permit( :name, :about, :avatar, :slug)
   end
 
 end

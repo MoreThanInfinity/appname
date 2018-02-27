@@ -15,7 +15,8 @@ class User < ApplicationRecord
   has_many :subscriptions
   has_many :chats, through: :subscriptions
   has_many :comchats, through: :subscriptions
-
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
   mount_uploader :avatar, AvatarUploader
   self.per_page=5
@@ -55,9 +56,11 @@ end
 #  name                   :string
 #  avatar                 :string
 #  about                  :string
+#  slug                   :string
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_slug                  (slug) UNIQUE
 #

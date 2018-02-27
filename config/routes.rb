@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 
-  root "home#index"
+  root "users#profile", as: 'profile'
   #post 'follows/create'
   #post 'follows/destroy'
   #get 'profiles/edit'=>'profiles#edit'

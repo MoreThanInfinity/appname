@@ -1,25 +1,39 @@
-<div class='row' style='margin-top:30px;'>
-        <div class='col-lg-5 text-center' >
-          <h4><%= link_to @user.name, user_path(@user) %></h4>
-          <%= link_to (image_tag (@user.avatar), size: '200x200', class: 'img-responsive img-rounded center-block') %>
 
-          <div class=text-center>  
-          <div class='btn-group btn-group-lg' role='group'>
-          <%= link_to chats_path( other_user: @user.id),type: 'button', class: 'btn btn-default', method: :post do %>
-          <i class='fa fa-envelope fa-lg' ></i>
-          <% end %>
-          <%= link_to follow_user_path(@user), id: 'user-#{ @user.id}-follow',type: 'button', class: 'btn btn-default', method: :put, remote: :true  do %>
-          <i class='fa fa-user-plus fa-lg' ></i>
-          <% end %>
-          </div>
-          </div>
+<div class='row'>
+  <div class='col-lg-12  text-center'>
+    <h1> </h1><hr/>
+      <div class='row'>
+
+        <div class='col-lg-6  text-center'>        
+          <h3><strong ><%= @user.name %></strong><hr/></h3>
+          <%= image_tag (@user.avatar), class: 'img-responsive center-block img-rounded' %>
+
+          <% if @user != current_user%>
+            <div class=text-center>  
+              <div class='btn-group btn-group-lg' role='group'>
+                <%= link_to chats_path( other_user: @user.id),type: 'button', class: 'btn btn-default', method: :post do %>
+                    <i class='fa fa-envelope fa-lg' ></i>
+                  <% end %>
+                <%= link_to follow_user_path(@user), id: 'user-#{ @user.id}-follow',type: 'button', class: 'btn btn-default', method: :put, remote: :true  do %>
+                    <i class='fa fa-user-plus fa-lg' ></i>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>       
         </div>
 
-
-        <div class='col-lg-7 well'>
-          <h3>User information (<span id='user-<%= @user.id %>-followsize'><%= @user.followers_count %></span> followers)</h3>
-          <%= @user.about %>
+        <div class='col-lg-6  text-center'>
+          <h3><strong >Some information about user</strong>(<span id='user-<%= @user.id %>-followsize'><%= @user.followers_count %></span> followers)<hr/></h3>
+          <h5 id='user-info'><%= @user.about %></h5>
+          <% if @user == current_user %>
+            <div class='row btn-margin'>
+              <div class='col-md-8 col-md-offset-2 text-center' id='user-edit-btn'><%= link_to 'Change information or avatar', edit_user_path(@user), class: 'btn btn-lg btn-primary btn-block', id: 'edit_link', remote: true %></div>
+            </div>
+          <% end -%>
         </div>
+
+      </div>
+  </div>
 </div>
 
 
