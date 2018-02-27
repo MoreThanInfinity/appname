@@ -11,16 +11,18 @@
 
 
   <body>
-    <div class='row'>
+    <div class='row' id='container'>
     <%= render 'shared/navbar' %>
-      <div class='container' style='padding-top:60px; margin-right:40px;'>
-        
-        <%= yield %> 
-      </div>  
-    </div> 
-    <div class="footer-bottom text-center">
-      <div class='container'>
-        <h4>Developed by Kirienko Alexandr, Minsk, 2018 | <%= link_to 'GitHub repo link', 'https://github.com/MoreThanInfinity/appname' %>. </h4>
+      <div id="body">
+          <div class='container' style='padding-top:60px; margin-right:40px;'>  
+            <%= yield %> 
+          </div> 
+      </div>
+   
+      <div id="footer">
+        <div class="footer footer-bottom">
+            Developed by Kirienko Alexandr, Minsk, 2018 | <%= link_to 'GitHub repo link', 'https://github.com/MoreThanInfinity/appname' %>.
+        </div>
       </div>
     </div> 
   </body>
