@@ -2,10 +2,16 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :vote, :update, :destroy]
   before_action :require_permission, only: [:edit, :update, :destroy]
-
+  require 'will_paginate/array'
   def index
     @navigation= "Posts"
-    @posts = Post.all.page(params[:page]).order('created_at ASC')
+    @searcheable="Post"
+    if params[:search]
+      posts=Post.search(params[:search]).order('created_at DESC')
+    else
+      posts = Post.all.order('created_at DESC')
+    end
+    @posts=posts.page(params[:page]).order('created_at DESC')
   end
 
   def show

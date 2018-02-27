@@ -2,11 +2,18 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :subscribe]
   respond_to :js, :html
-
+  require 'will_paginate/array'
   def index
     @navigation="People"
-    @users=User.where('id != ?', current_user.id).page(params[:page]).order('created_at ASC')
+    @searcheable="User"
+    if params[:search]
+      users=User.where('id != ?', current_user.id).search(params[:search]).order('created_at ASC')
+    else
+      users = User.where('id != ?', current_user.id).all.order('created_at ASC')
+    end
+    @users=users.page(params[:page]).order('created_at ASC')
   end
+
 
   def show
     if @user==current_user

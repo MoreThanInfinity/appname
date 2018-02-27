@@ -22,6 +22,10 @@ class User < ApplicationRecord
   self.per_page=5
 
   delegate :com_chats, :pers_chats, to: :chats
+  def self.search(search)
+    where("about ILIKE? OR name ILIKE?","%#{search}%", "%#{search}%")
+  end
+
   def self.current
     Thread.current[:user]
   end

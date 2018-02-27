@@ -9,12 +9,25 @@
 </div>
 
 <div class='posts'>
-	<%= render @posts %>
+	<% if @posts.present? %>
+		<%= render @posts %>
+	<% else %>
+		<h2 class='text-center'>
+		<div class="row">
+		<div class='col-lg-8 col-lg-offset-2'>It`s a simple search system, but it`s realy work. Please check detalis and try again.
+		</div>
+		</div>
+
+		</h2>
+	<% end -%>
 </div >
 
 <div class='row text-center'>
+<% if !@posts.empty? %>
   <%= will_paginate(@posts, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+<% end %>
 </div>
+
 
  
 

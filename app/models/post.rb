@@ -7,6 +7,9 @@ class Post < ApplicationRecord
   validates_presence_of :content
 
   self.per_page=5
+  def self.search(search)
+    joins(:user).where("posts.content ILIKE? OR users.name ILIKE?","%#{search}%", "%#{search}%")
+  end
 
   mount_uploader :attachments, AttachmentsUploader
   tracked only: [:create, :like], owner: proc{|_controller, model| model.user}
