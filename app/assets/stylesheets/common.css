@@ -29,3 +29,8 @@
 	height: 50px;
 	width: 50px;
 }
+.fa-rotate-45 { 
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg); 
+}

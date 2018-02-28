@@ -12,11 +12,18 @@
             <div class=text-center>  
               <div class='btn-group btn-group-lg' role='group'>
                 <%= link_to chats_path( other_user: @user.id),type: 'button', class: 'btn btn-default', method: :post do %>
-                    <i class='fa fa-envelope fa-lg' ></i>
-                  <% end %>
-                <%= link_to follow_user_path(@user), id: 'user-#{ @user.id}-follow',type: 'button', class: 'btn btn-default', method: :put, remote: :true  do %>
-                    <i class='fa fa-user-plus fa-lg' ></i>
-                  <% end %>
+                  <i class='fa fa-envelope fa-lg' ></i>
+                <% end %>
+
+                <% if !@user.followed_by? current_user %>
+                  <%= link_to follow_user_path(@user), id: 'user-#{@user.id}-follow',type: 'button', class: 'btn btn-default', method: :put, remote: :true  do %>
+                      <i class='fa fa-plus fa-lg' id='zaebalo-<%= @user.id %>' ></i>
+                    <% end %>
+                <% elsif @user.followed_by? current_user %>
+                  <%= link_to follow_user_path(@user), id: 'user-#{@user.id}-follow',type: 'button', class: 'btn btn-default', method: :put, remote: :true  do %>
+                      <i class='fa fa-plus fa-lg fa-rotate-45' id='zaebalo-<%= @user.id %>'></i>
+                    <% end %>
+                <% end %>
               </div>
             </div>
           <% end %>       
