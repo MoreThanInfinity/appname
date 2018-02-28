@@ -19,6 +19,12 @@
 #  avatar                 :string
 #  about                  :string
 #  slug                   :string
+#  hobbies                :string
+#  city                   :string
+#  available_languages    :string
+#  education              :string
+#  phone_number           :string
+#  date_of_birth          :date
 #
 # Indexes
 #

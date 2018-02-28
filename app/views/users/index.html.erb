@@ -21,12 +21,40 @@
         </div>
 
 
-        <div class='col-lg-6 well'>
-          <h3>User information (<span id='user-<%= user.id %>-followsize'><%= user.followers_count %></span> followers)</h3>
-          <%= user.about %>
+        <div class='col-lg-6'>
+        <div class="panel panel-info text-left">
+        <div class="panel-heading">
+          <h3>User information (<span id='user-<%= user.id %>-followsize'><%= user.followers_count %></span> followers)</h3></div>
+        </div>
+        <div class='panel-body'>
+          <ul class="list-group">
+          <% if user.city %> 
+            <li class="list-group-item">
+              <strong>City: </strong><%= user.city %>
+            </li>
+          <% end %>
+
+          <% if user.date_of_birth %> 
+            <li class="list-group-item">
+              <strong>Age: </strong><%= age(user.date_of_birth) %>
+            </li>
+          <% end %>
+          <% if user.available_languages %> 
+            <li class="list-group-item">
+              <strong>Languages: </strong><%= user.available_languages %>
+            </li>
+          <% end %>
+          <% if user.education %> 
+            <li class="list-group-item">
+              <strong>Education: </strong><%= user.education %>
+            </li>
+          <% end %>                                  
+          </ul>
+        </div>
         </div>
       </div>
     </div>
+
     <% end %>
   <% else %>
     <h2 class='text-center'>
@@ -35,7 +63,7 @@
         </div>
       </div>
     </h2>
-  <% end -%>
+  <% end %>
 
 </div>
 

@@ -6,4 +6,3 @@
 //= require jquery.remotipart
 //= require channels/messages
 //= require messages_form
-

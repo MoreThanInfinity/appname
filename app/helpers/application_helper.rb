@@ -27,4 +27,11 @@ module ApplicationHelper
     (item.class == Post && current_user.posts.include?(item)) ||
       (item.class == Comment && current_user.posts.include?(Post.find(item.commentable_id)))
   end
+  def phone(number)
+    "+375(#{number[0..1]})#{number[2..4]}-#{number[5..6]}-#{number[7..8]}"
+  end
+  def age(dob)
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
 end

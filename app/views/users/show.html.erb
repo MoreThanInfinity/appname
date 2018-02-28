@@ -6,7 +6,7 @@
 
         <div class='col-lg-6  text-center'>        
           <h3><strong ><%= @user.name %></strong><hr/></h3>
-          <%= image_tag (@user.avatar), class: 'img-responsive center-block img-rounded' %>
+          <%= image_tag (@user.avatar), class: 'img-responsive center-block img-rounded', size: '500x750' %>
 
           <% if @user != current_user%>
             <div class=text-center>  
@@ -23,13 +23,59 @@
         </div>
 
         <div class='col-lg-6  text-center'>
-          <h3><strong >Some information about user</strong>(<span id='user-<%= @user.id %>-followsize'><%= @user.followers_count %></span> followers)<hr/></h3>
-          <h5 id='user-info'><%= @user.about %></h5>
+          <h3><strong >Information about</strong>(<span id='user-<%= @user.id %>-followsize'><%= @user.followers_count %></span> followers)<hr/></h3>
+
+          <div class='continer' id='user-info'>
+          <% if @user.city %>
+            <div class='panel panel-info text-left'>
+              <div class="panel-heading"><strong>City</strong></div>
+              <div class='panel-body'><%= @user.city %></div>
+            </div>
+          <% end %>
+          <% if @user.date_of_birth %>
+            <div class='panel panel-info text-left'>
+              <div class="panel-heading"><strong>Day of birth</strong></div>
+              <div class='panel-body'><%= @user.date_of_birth.to_formatted_s(:long)   %></div>
+            </div>
+          <% end -%>
+          <% if @user.phone_number %>
+           <div class='panel panel-info text-left'>
+              <div class="panel-heading"><strong>Phone number</strong></div>
+              <div class='panel-body'><%= phone(@user.phone_number) %></div>
+            </div>
+            <% end -%>
+            <% if @user.education %>
+            <div class='panel panel-info text-left'>
+              <div class="panel-heading"><strong>Education:</strong></div>
+              <div class='panel-body'><%= @user.education %></div>
+            </div>
+            <% end -%>
+            <% if @user.available_languages %>
+            <div class='panel panel-info text-left'>
+              <div class="panel-heading"><strong>Languages</strong></div>
+              <div class='panel-body'><%= @user.available_languages %></div>
+            </div>
+            <% end -%>
+            <% if @user.hobbies %>
+            <div class='panel panel-info text-left'>
+              <div class="panel-heading"><strong>Hobbies</strong></div>
+              <div class='panel-body'><%= @user.hobbies %></div>
+            </div>
+            <% end -%>
+            <% if @user.about %>
+            <div class='panel panel-info text-left'>
+              <div class="panel-heading"><strong>Other information</strong></div>
+              <div class='panel-body'><%= @user.about %></div>
+            </div>
+            <% end -%>
+          </div>
+
           <% if @user == current_user %>
             <div class='row btn-margin'>
               <div class='col-md-8 col-md-offset-2 text-center' id='user-edit-btn'><%= link_to 'Change information or avatar', edit_user_path(@user), class: 'btn btn-lg btn-primary btn-block', id: 'edit_link', remote: true %></div>
             </div>
           <% end -%>
+
         </div>
 
       </div>
