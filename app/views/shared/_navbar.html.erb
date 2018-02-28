@@ -1,10 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top" style='padding-top:10px; margin-right:0px; margin-left:0px;'>
   <div class="container-fluid" style='padding-top:10px; margin-right:20px;'  >
     <!-- Brand and toggle get grouped for better mobile display -->
-
+    <% if current_user %>
     <div class="navbar-brand" style='padding-top: 0px; margin-top: -10px;'>
       <%= link_to (image_tag (current_user.avatar), class: 'img-responsive img-rounded center-block', id: 'brand'), current_user %>
     </div>
+    <% end %>
     <div class="navbar-header">
       <%= link_to 'My profile', profile_path, class: 'navbar-brand' %>
     </div>

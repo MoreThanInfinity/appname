@@ -1,11 +1,13 @@
 <div style='padding-top:40px;'></div>
 <%= simple_form_for @user, class: 'form-group ', id: 'user-form' do |f| %>
+	<%= f.error_notification %>
+
 	<%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 100,
     end_year: Date.today.year, order: [:day, :month, :year] %>
 	<%= f.input :name , label: false, placeholder: "Enter your name", class: 'form-control input-lg', row: '3' %>
     <%= f.input :city, placeholder: 'Where do you live?', label: false %>
 
-    <%= f.input :phone_number, class: 'form-control input-lg', placeholder: 'Your phone number 2yxxxxxxx', label: false %>
+    <%= f.input :phone_number, class: 'form-control input-lg', placeholder: ' Phone number (+375)-no input! form-(YYxxxxxxx)', label: false %>
     <%= f.input :education, placeholder: 'The last place of education', label: false, class: 'form-control input-lg' %>
     <%= f.input :available_languages, placeholder: 'What languages do you speak?', label: false, class: 'form-control input-lg' %>
     <%= f.input :hobbies, placeholder: 'Enter your hobbies', label: false, class: 'form-control input-lg', row: '3' %>

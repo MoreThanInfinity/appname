@@ -7,7 +7,6 @@ end
 
 gem 'bootstrap-will_paginate'
 gem "font-awesome-rails"
-
 gem 'will_paginate'
 gem 'public_activity'
 gem 'acts_as_votable'

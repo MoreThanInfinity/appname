@@ -41,7 +41,7 @@
           <% if @user.phone_number %>
            <div class='panel panel-info text-left'>
               <div class="panel-heading"><strong>Phone number</strong></div>
-              <div class='panel-body'><%= phone(@user.phone_number) %></div>
+              <div class='panel-body'><%= @user.phone_number %></div>
             </div>
             <% end -%>
             <% if @user.education %>

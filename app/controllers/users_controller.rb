@@ -27,10 +27,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to profile_path
-    else
-      redirect_to profile_path
+
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html {redirect_to profile_path}
+      else
+        format.html {redirect_to profile_path}
+      end
     end
     @user.update(slug: @user.name.parameterize)
   end
