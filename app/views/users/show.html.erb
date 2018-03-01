@@ -33,43 +33,43 @@
           <h3><strong >Information about</strong>(<span id='user-<%= @user.id %>-followsize'><%= @user.followers_count %></span> followers)<hr/></h3>
 
           <div class='continer' id='user-info'>
-          <% if @user.city %>
+          <% if @user.city.present? %>
             <div class='panel panel-info text-left'>
               <div class="panel-heading"><strong>City</strong></div>
               <div class='panel-body'><%= @user.city %></div>
             </div>
           <% end %>
-          <% if @user.date_of_birth %>
+          <% if @user.date_of_birth.present? %>
             <div class='panel panel-info text-left'>
               <div class="panel-heading"><strong>Day of birth</strong></div>
               <div class='panel-body'><%= @user.date_of_birth.to_formatted_s(:long)   %></div>
             </div>
           <% end -%>
-          <% if @user.phone_number %>
+          <% if @user.phone_number.present? %>
            <div class='panel panel-info text-left'>
               <div class="panel-heading"><strong>Phone number</strong></div>
               <div class='panel-body'><%= @user.phone_number %></div>
             </div>
             <% end -%>
-            <% if @user.education %>
+            <% if @user.education.present? %>
             <div class='panel panel-info text-left'>
               <div class="panel-heading"><strong>Education:</strong></div>
               <div class='panel-body'><%= @user.education %></div>
             </div>
             <% end -%>
-            <% if @user.available_languages %>
+            <% if @user.available_languages.present? %>
             <div class='panel panel-info text-left'>
               <div class="panel-heading"><strong>Languages</strong></div>
               <div class='panel-body'><%= @user.available_languages %></div>
             </div>
             <% end -%>
-            <% if @user.hobbies %>
+            <% if @user.hobbies.present? %>
             <div class='panel panel-info text-left'>
               <div class="panel-heading"><strong>Hobbies</strong></div>
               <div class='panel-body'><%= @user.hobbies %></div>
             </div>
             <% end -%>
-            <% if @user.about %>
+            <% if @user.about.present? %>
             <div class='panel panel-info text-left'>
               <div class="panel-heading"><strong>Other information</strong></div>
               <div class='panel-body'><%= @user.about %></div>

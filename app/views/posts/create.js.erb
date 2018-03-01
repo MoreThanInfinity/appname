@@ -1,3 +1,7 @@
-$('#new_post').remove();
-$('#new_link').show();
-$('.posts').prepend('<%= j render @post %>');
+<% if @post.errors.any? %>
+	$('.errors').html('<%= j render 'shared/errors', target: @post %>');
+<% else %>
+	$('#new_post').remove();
+	$('#new_link').show();
+	$('.posts').prepend('<%= j render @post %>');
+<% end %>

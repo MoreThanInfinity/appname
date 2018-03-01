@@ -34,23 +34,23 @@
         </div>
         <div class='panel-body'>
           <ul class="list-group">
-          <% if user.city %> 
+          <% if user.city.present? %> 
             <li class="list-group-item">
               <strong>City: </strong><%= user.city %>
             </li>
           <% end %>
 
-          <% if user.date_of_birth %> 
+          <% if user.date_of_birth.present? %> 
             <li class="list-group-item">
               <strong>Age: </strong><%= age(user.date_of_birth) %>
             </li>
           <% end %>
-          <% if user.available_languages %> 
+          <% if user.available_languages.present? %> 
             <li class="list-group-item">
               <strong>Languages: </strong><%= user.available_languages %>
             </li>
           <% end %>
-          <% if user.education %> 
+          <% if user.education.present? %> 
             <li class="list-group-item">
               <strong>Education: </strong><%= user.education %>
             </li>

@@ -28,10 +28,10 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     respond_to do |format|
-      if @post.save!
+      if @post.save
         format.js
       else
-        format.html { render :new, notice: "#{@post.errors.full_messages}" }
+        format.js
       end
     end
   end
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
       if @post.update(post_params)
         format.js
       else
-        format.html { render :edit , notice: "#{@post.errors.full_messages}"}
+        format.js
       end
     end
   end
