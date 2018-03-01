@@ -1,0 +1,5 @@
+<% if @user.errors.any? %>
+	$('.errors').html('<%= j render 'shared/errors', target: @user %>')
+<% else %>
+	window.location = "/users/<%= @user.slug %>";
+<% end %>
