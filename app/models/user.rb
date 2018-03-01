@@ -11,8 +11,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :posts
 
-  #validates :phone_number, length: { is: 9 , message: 'input 9 symbols please!'}
-  #validates :phone_number, format: { with: /\A\d+\z/ , message: "Integer only. No sign allowed."}
+  validates :phone_number, length: { is: 9 , message: 'input 9 symbols please!'}, allow_blank: true, allow_nil: true
+  validates :phone_number, format: { with: /\A\d+\z/ , message: "Integer only. No sign allowed."}, allow_blank: true, allow_nil: true
   has_many :messages
   has_many :subscriptions
   has_many :chats, through: :subscriptions

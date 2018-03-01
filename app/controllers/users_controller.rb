@@ -30,12 +30,13 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update(user_params)
+        @user.update(slug: @user.name.parameterize)
         format.js
       else
         format.js
       end
     end
-    @user.update(slug: @user.name.parameterize)
+
   end
 
   def subscribe
