@@ -30,9 +30,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update(user_params)
-        format.html {redirect_to profile_path}
+        format.js
       else
-        format.html {redirect_to profile_path}
+        format.js
       end
     end
     @user.update(slug: @user.name.parameterize)

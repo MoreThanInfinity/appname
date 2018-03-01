@@ -1,5 +1,5 @@
 <div style='padding-top:40px;'></div>
-<%= simple_form_for @user, class: 'form-group ', id: 'user-form' do |f| %>
+<%= simple_form_for @user, class: 'form-group ', id: 'user-form', remote: true do |f| %>
 	<%= f.error_notification %>
 
 	<%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 100,
